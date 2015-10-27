@@ -1,0 +1,1 @@
+var MoxieMovies = angular.module('moxiemovies', []);
