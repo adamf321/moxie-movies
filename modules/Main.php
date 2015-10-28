@@ -42,5 +42,13 @@ class Main
             null,
             true
         );
+
+        wp_localize_script(
+            'moxie-movies-app',
+            'MoxieMovies',
+            array(
+                'ajaxUrl' => admin_url( 'admin-ajax.php' )
+            )
+        );
     }
 }

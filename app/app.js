@@ -1,1 +1,1 @@
-var MoxieMovies = angular.module('moxiemovies', []);
+var app = angular.module('moxiemovies', []);
