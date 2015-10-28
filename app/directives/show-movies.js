@@ -7,10 +7,14 @@
             {
                 scope.movies = [];
 
+                scope.loading = true;
+
                 moviesService.get(
                     function( response )
                     {
                         scope.movies = response.data;
+
+                        scope.loading = false;
                     },
                     function()
                     {
@@ -24,17 +28,20 @@
                 restrict: 'E',
                 replace: true,
                 template:
-                    '<ol>' +
-                        '<li ng-repeat="movie in movies" id="movie-{{movie.id}}">' +
-                            '<h2>{{movie.title}}</h2>' +
-                            '<div class="description">{{movie.short_description}}</div>' +
-                            '<div class="meta">' +
-                                '<span class="rating" ng-show="{{movie.rating}}">Rating: {{movie.rating}}</span>' +
-                                '<span class="year" ng-show="{{movie.year}}">Year: {{movie.year}}</span>' +
-                                '<span class="poster" ng-show="{{movie.poster_url}}"><a ng-href="{{movie.poster_url}}">Poster</a></span>' +
-                            '</div>' +
-                        '</li>' +
-                    '</ol>'
+                    '<div class="movies-list">' +
+                        '<div class="loader" ng-show="loading"></div>' +
+                        '<ol>' +
+                            '<li ng-repeat="movie in movies" id="movie-{{movie.id}}">' +
+                                '<h2>{{movie.title}}</h2>' +
+                                '<div class="description">{{movie.short_description}}</div>' +
+                                '<div class="meta">' +
+                                    '<span class="rating" ng-show="{{movie.rating}}">Rating: {{movie.rating}}</span>' +
+                                    '<span class="year" ng-show="{{movie.year}}">Year: {{movie.year}}</span>' +
+                                    '<span class="poster" ng-show="{{movie.poster_url}}"><a ng-href="{{movie.poster_url}}">Poster</a></span>' +
+                                '</div>' +
+                            '</li>' +
+                        '</ol>' +
+                    '</div>'
             };
         }]);
 }());
