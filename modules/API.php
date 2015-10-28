@@ -25,6 +25,11 @@ class API
      */
     public static function get_movies()
     {
+        $nonce = $_REQUEST['nonce'];
+
+        if ( !wp_verify_nonce( $nonce, 'moxie_movies' ) )
+            wp_die();
+
         $return = get_transient( self::TRANSIENT_MOVIE_LIST );
 
         if( $return === false )

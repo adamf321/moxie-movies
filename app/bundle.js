@@ -71,7 +71,7 @@ require('./directives/show-movies');
                     var config = {
                         params: {
                             action: 'get_movies',
-                            nonce:  ''
+                            nonce:  MoxieMovies.nonce
                         }
                     };
 
