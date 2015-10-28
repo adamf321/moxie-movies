@@ -33,6 +33,7 @@ var app = angular.module('moxiemovies', []);
                 template:
                     '<div class="movies-list">' +
                         '<div class="loader" ng-show="loading"></div>' +
+                        '<div class="no-movies" ng-show="!loading && !movies.length">No movies found.</div>' +
                         '<ol>' +
                             '<li ng-repeat="movie in movies" id="movie-{{movie.id}}">' +
                                 '<h2>{{movie.title}}</h2>' +

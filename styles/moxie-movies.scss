@@ -1,5 +1,10 @@
 @import 'mixins';
 
+.movies-list {
+    min-height: 50px;
+    position: relative;
+}
+
 .loader {
     position: absolute;
     top: 0;
@@ -7,4 +12,11 @@
     right: 0;
     bottom: 0;
     background: rgba(255,255,255,0.7) url('../img/ajax-loader.gif') no-repeat center;
+}
+
+.no-movies {
+    text-align: center;
+    margin: 20px 0;
+    font-style: italic;
+    color: gray;
 }
