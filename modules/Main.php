@@ -5,8 +5,6 @@ namespace MoxieMovies\Modules;
 
 class Main
 {
-    const AD_SLUG = 'product';
-
     public static function init()
     {
         //Init modules
