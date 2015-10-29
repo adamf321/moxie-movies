@@ -17,7 +17,7 @@ class API
         //Hooks
         add_action( 'wp_ajax_get_movies',        array(__CLASS__, 'get_movies') );
         add_action( 'wp_ajax_nopriv_get_movies', array(__CLASS__, 'get_movies') );
-        add_action( 'publish_movie',             array(__CLASS__, 'new_post'), 10, 2 );
+        add_action( 'publish_movie',             array(__CLASS__, 'clear_cache') );
     }
 
     /**
@@ -25,10 +25,10 @@ class API
      */
     public static function get_movies()
     {
-        $nonce = $_REQUEST['nonce'];
+        $nonce = isset($_REQUEST['nonce']) ? $_REQUEST['nonce'] : '';
 
         if ( !wp_verify_nonce( $nonce, 'moxie_movies' ) )
-            wp_die();
+            wp_die( 'error' );
 
         $return = get_transient( self::TRANSIENT_MOVIE_LIST );
 
@@ -57,12 +57,10 @@ class API
             set_transient( self::TRANSIENT_MOVIE_LIST, $return, 1 * WEEK_IN_SECONDS );
         }
 
-        echo json_encode( $return );
-
-        wp_die();
+        wp_die( json_encode( $return ) );
     }
 
-    public static function new_post( $post_id, $post )
+    public static function clear_cache()
     {
         delete_transient( self::TRANSIENT_MOVIE_LIST );
     }
