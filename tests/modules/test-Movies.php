@@ -39,8 +39,6 @@ class Test_Movies extends WP_UnitTestCase
 
     /**
      * render_meta_box()
-     *
-     * @outputBuffering enabled
      */
     public function test_render_meta_box()
     {
